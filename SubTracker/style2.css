@@ -1,8 +1,7 @@
 body{
     background-color: #F3F3F3;
-    padding-top: 4.4em;
+        padding-top: 4.4em;
 }
-/* Navbar */
 .navbar-custom {
 	font-size: 1.1em;
     font-weight: 500;
@@ -16,18 +15,16 @@ body{
 	background-color: #F3F3F3;
 	position: fixed;
 }
-/* Navbar end */
-/* Buttons */
 .btn-outline-success{
 	color: #000;
 }
-.ctaButton, .submitbutton {
+.signupButton {
 	background-color: #007ed0;
 	color: #ffffff;
-	border-color: #007ed0;
+	border-color: #006bba;
 	font-weight: 500;
 }
-.navctaButton {
+.navSignupButton {
     margin-right: 0.5em;
 }
 .signinButton {
@@ -35,24 +32,28 @@ body{
 	color: #003366;
 	border-color: #003366;
 	font-weight: 500;
-    margin-top: 1em;
+	margin-top: 1em;
     position: relative;
 }
-.ctaButton:hover, .signinButton:hover, .submitbutton:hover {
+.signupButton:hover {
 	background-color: #000;
 	border-color: #000;
 	color: #fff;
-    font-weight: 500;
 }
-
-.signinButton:active, .signinButton:focus {
+.signinButton:hover {
+	background-color: #003366;
+	color: #ffffff;
+	border-color: #003366;
+	font-weight: 500;
+}
+.signinButton:active, .loginButton:focus {
 	box-shadow: 0 0 0 0.1rem #003366;
 }
-.ctaButton:active, .ctaButton:focus {
+.signupButton:active, .signupButton:focus {
 	box-shadow: 0 0 0 0.1rem #006bba;
 }
-/* Buttons end */
-/* Jumbotrons */
+
+
 .jumbotron, .jumbotron-fluid {
 	color: #fff;
 	margin: 0;
@@ -76,11 +77,9 @@ body{
     background: rgb(0,30,60);	
     background: linear-gradient(90deg, rgba(0,30,60,1) 0%, rgba(0,51,102,1) 35%, rgba(0,80,161,1) 100%);
 }
-/* Jumbotrons end */
 .display-5 {
     font-weight: 100;
 }
-/* Footer */
 footer {
 	background-color: #F3F3F3;
 	padding-bottom: 3em;
@@ -96,7 +95,6 @@ footer a {
 .copyright {
 	float: right;
 }
-/* Footer end */
 .ctaimg {
     width: 100%;
     height: 100%;
@@ -112,17 +110,12 @@ footer a {
     nav{
         text-align: center;
     }
-    .navctaButton {
-    margin-right: auto;
-    display:block;
-    }
-    .signupButton, .signinButton{
-        display: block;
-        margin-right: 0;
-        margin-bottom: 5em;
-        margin-top: 5em;}
+    .signupButton, .signinButton{display: block;
+    margin-right: 0;
+    margin-bottom: 5em;
+    margin-top: 5em;}
     body{
-        background-color: #F3F3F3;
+    background-color: #F3F3F3;
         padding-top: 4.2em;
-        }
+}
 }
