@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>SubTracker</title>
+	<title>Home | SubTracker</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <!--Favicon-->
@@ -31,7 +31,7 @@
             <li class="nav-item"><a class="nav-link" href="#aboutus">About Us</a></li>
 	       <li class="nav-item"><a class="nav-link" href="#contactus">Contact Us</a></li>
         </ul>
-	   <a class="btn my-2 signupButton navSignupButton" href="#">Sign Up</a>
+	   <a class="btn my-2 ctaButton navctaButton" href="#">Sign Up</a>
        <a class="btn my-2 signinButton" href="signin.html">Sign In</a>
 	    </div>
 	   </div>
@@ -43,34 +43,34 @@
 <div id="index" class="jumbotron jumbotron-custom-home">
 <div class="container ">
     <div class="row">
-        <div class="col-sm-8 col-md-5 mx-auto align-items-center">
+        <div class="col-sm-8 col-md-5 align-items-center">
         <h1 class="display-4 ">Forgot to cancel a subscription?</h1>
         <p class="lead">No more forgetting. Stop paying for unused subscriptions. SubTracker can help you track and manage your subscriptions.</p>
-	    <button class="btn my-2 my-sm-0 signupButton" href="signup.html">Start Saving Now</button>
+	    <button class="btn my-2 my-sm-0 ctaButton" href="signup.html">Start Saving Now</button>
     </div>
         <img class="col-md-6 ml-auto my-auto p-0 ctaimg" src="images/laptop.jpg" alt="pc" width="300" height="300">
     </div>
 </div>
 </div>
 <!-- About Us -->
-<div id="aboutus" class="jumbotron jumbotron-fluid jumbotron-custom-about">
+<div id="aboutus" class="jumbotron jumbotron-custom-about">
 <div class="container">
     <div class="row">
-    <div class="col-sm-8 col-md-5 text-center mx-auto my-5">
+    <div class="col-sm-8 col-md-6 text-center mx-auto my-5">
         <h1 class="display-4">Our Story</h1>
         <p class="lead">One of the many problems</p>
     </div>
-    <div class="col-sm-8 col-md-5 text-center mx-auto my-5">
+    <div class="col-sm-8 col-md-6 text-center mx-auto my-5">
         <h1 class="display-4">Our Goal</h1>
         <p class="lead">At SubTracker, we want our </p>
     </div>
     </div>
     <div class="row">
-    <div class="col-sm-8 col-md-5 text-center mx-auto my-5">
+    <div class="col-sm-8 col-md-6 text-center mx-auto my-5">
         <h1 class="display-4">Our Team</h1>
         <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     </div>
-    <div class="col-sm-8 col-md-5 text-center mx-auto my-5">
+    <div class="col-sm-8 col-md-6 text-center mx-auto my-5">
         <h1 class="display-4">Our Mission</h1>
         <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     </div>
@@ -78,13 +78,13 @@
 </div>
 </div>
 <!-- Contact Us -->
-<div id="contactus" class="jumbotron jumbotron-fluid jumbotron-custom-contact">
+<div id="contactus" class="jumbotron jumbotron-custom-contact">
     <div class="container">
         <h1 class="h1-responsive text-center my-4 display-4">Contact Us</h1>
         <p class="lead text-center w-responsive mx-auto mb-5">Have a question or a suggestion? Our team will gladly assist you with any of your suggestions, questions, or concerns.</p>
         <div class="row">
         <!--Grid column-->
-        <div class="col-md-6 mb-md-0  mb-5">
+        <div id="form-field" class="col-md-6 mb-md-0 mb-5">
         <form id="contact-form" name="contact-form" action="#" method="">
         <div class="row">
         <div class="col-md-6">
@@ -117,10 +117,17 @@
         </div>
         </div>         
         <div class="text-center">
-            <button class="btn my-2 my-sm-0 signupButton m-auto" type="submit">Submit</button>
+            <button class="btn my-2 my-sm-0 submitbutton m-auto" type="submit">Submit</button>
         </div>
-            <div class="status"></div>
         </form>
+        </div>
+        <div id="contact-success" class="my-auto" style="display:none">
+            <div class="row text-center justify-content-center ">
+            <div class="col-md-9">
+                <h1 class="display-4">Thank you.</h1>
+                <p class="lead">Your message has been received. We will get back to you as soon as possible!</p>
+            </div>
+            </div>
         </div>
         <div class="col-md-3 ml-auto mr-auto text-center">
             <ul class="list-unstyled">
@@ -159,5 +166,13 @@
        </ul>
 		</div>
 	</footer>
+    <script>$(document).ready(function() {
+    $("#contact-form").submit(function(e) {
+        event.preventDefault()
+        $("#form-field").hide();
+        $("#contact-success").show();
+    });
+});</script>
 </body>
 </html>
+
