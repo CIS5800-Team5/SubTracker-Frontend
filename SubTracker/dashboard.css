@@ -6,6 +6,9 @@ body{
 main {
     background-color:white;
 }
+nav a {
+    color: black;
+}
 .navbar {
 	background-color: #F3F3F3;
 	position: fixed;
@@ -39,6 +42,7 @@ footer a {
 }
 .copyright {
 	float: right;
+    padding-right: 15px;
 }
 .dashboard{
     margin-top:6px;
@@ -50,10 +54,24 @@ footer a {
 .navbar-expand-lg .navbar-nav .dropdown-menu {
     position: absolute;
 }
+.dropdown-menu {
+    float: right;
+}
+.btnDel {
+    background-color: red;
+    border-radius: 5px;
+    color: white;
+    font-weight: 500;
+}
+.addSubbtn {
+    background-color: #007ed0;
+    color: white;
+}
+.addSubbtn:hover {
+    background-color: #000;
+    color: white;
+}
 @media (max-width: 768px) {
-  [class*="col-"] {
-      margin-bottom: 5em;
-  }
     .navbar-brand {
         justify-content: center;
         margin:auto;
@@ -62,4 +80,9 @@ footer a {
 @media (min-width: 0px)
 .navbar-expand-md .navbar-nav .dropdown-menu {
     position: absolute;
+}
+@media (max-width:992px){
+    nav{
+        text-align: center;
+    }
 }
