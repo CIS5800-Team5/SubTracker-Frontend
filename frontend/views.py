@@ -10,5 +10,7 @@ def index(request):
     return render(request, 'index.html')
 def signin(request):
     return render(request, 'signin.html')
-def dashboard(request):
-    return render(request, 'dashboard.html')
+def subscriptions(request):
+    return render(request, 'subscriptions.html')
+def profile(request):
+    return render(request, 'profile.html')
