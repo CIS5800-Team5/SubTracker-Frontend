@@ -16,6 +16,7 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+LOGIN_URL='/user-auth/login/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -28,6 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SITE_ID = 1
 
 # Application definition
 
@@ -38,8 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'frontend',
-    'django_pdb',
+    'oauth2_provider',
+    'microsoft_auth',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -65,6 +70,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'microsoft_auth.context_processors.microsoft',
             ],
         },
     },
@@ -86,6 +92,19 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
+
+AUTHENTICATION_BACKENDS = [
+    'microsoft_auth.backends.MicrosoftAuthenticationBackend',
+    #'django.contrib.auth.backends.ModelBackend' # if you also want to use Django's authentication
+    # I recommend keeping this with at least one database superuser in case of unable to use others
+]
+
+AUTH_USER_MODEL='users.User'
+
+
+MICROSOFT_AUTH_CLIENT_ID = '82b69818-6892-43bc-b9ca-8e5589b3cbec'
+MICROSOFT_AUTH_CLIENT_SECRET = '-yrco_8XSBNo-.JQsUtw93oeqGp55rP9yO'
+MICROSOFT_AUTH_LOGIN_TYPE = 'ma'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
