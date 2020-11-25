@@ -34,6 +34,7 @@ SITE_ID = 1
 # Application definition
 
 INSTALLED_APPS = [
+    'social_django',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,8 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'frontend',
-    'oauth2_provider',
-    'microsoft_auth',
+    #'oauth2_provider',
+    #'microsoft_auth',
     'users',
 ]
 
@@ -70,7 +71,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'microsoft_auth.context_processors.microsoft',
+                #'microsoft_auth.context_processors.microsoft',
+                "social_django.context_processors.backends",
+                "social_django.context_processors.login_redirect",
             ],
         },
     },
@@ -94,17 +97,20 @@ DATABASES = {
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 AUTHENTICATION_BACKENDS = [
-    'microsoft_auth.backends.MicrosoftAuthenticationBackend',
+    #'microsoft_auth.backends.MicrosoftAuthenticationBackend',
     #'django.contrib.auth.backends.ModelBackend' # if you also want to use Django's authentication
     # I recommend keeping this with at least one database superuser in case of unable to use others
+    "social_core.backends.azuread_tenant.AzureADTenantOAuth2",
 ]
 
 AUTH_USER_MODEL='users.User'
 
+SOCIAL_AUTH_AZUREAD_TENANT_OAUTH2_KEY = '82b69818-6892-43bc-b9ca-8e5589b3cbec'
+SOCIAL_AUTH_AZUREAD_TENANT_OAUTH2_SECRET = os.environ['azure_auth_secret']
 
-MICROSOFT_AUTH_CLIENT_ID = '82b69818-6892-43bc-b9ca-8e5589b3cbec'
-MICROSOFT_AUTH_CLIENT_SECRET = '-yrco_8XSBNo-.JQsUtw93oeqGp55rP9yO'
-MICROSOFT_AUTH_LOGIN_TYPE = 'ma'
+#MICROSOFT_AUTH_CLIENT_ID = ''
+#MICROSOFT_AUTH_CLIENT_SECRET = ''
+#MICROSOFT_AUTH_LOGIN_TYPE = 'ma'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
