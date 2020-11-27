@@ -48,7 +48,7 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+    <link href="{% static '../css/dashboard.css' %}" rel="stylesheet">
   <style type="text/css">/* Chart.js */
 @-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style></head>
   <body>
@@ -57,7 +57,7 @@
   <button class="navbar-toggler d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-        <a class="navbar-brand" href="../.."><img src="{% static 'images/SubTracker.svg' %}" height="40" alt="SubTracker logo" id="logo"></a>
+        <a class="navbar-brand" href="../.."><img src="{% static '../images/SubTracker.svg' %}" height="40" alt="SubTracker logo" id="logo"></a>
 	<p>Welcome {{ request.user.first_name }}</p>
   <ul class="navbar-nav">
 

@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    #'django.contrib.staticfiles',
     'django.contrib.sites',
     'frontend',
 ]
@@ -55,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'subtracker_frontend.urls'
@@ -129,6 +130,8 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.user.user_details',
 )
 
+SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
+
 #SOCIAL_AUTH_AZUREAD_B2C_OAUTH2_USER_FIELDS = [
 #    'email', 'fullname'
 #    ]
@@ -167,12 +170,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATICFILES_LOCATION = "static"
-STATIC_URL = "/static/"
+#STATICFILES_LOCATION = "static"
+#STATIC_URL = "/static/"
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+#STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
