@@ -29,7 +29,7 @@ SECRET_KEY = 'ztst0^o1z+svq%0cz(_-5q$f=r#b^s3izn)@(!25^@i=xb7ud8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['subtracker-ui.azurewebsites.net', 'subtracker.ml', 'www.subtracker.ml']
 
 #SITE_ID = 1
 
