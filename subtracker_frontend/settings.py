@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import sys
+sys.path.append("libs")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -91,20 +93,6 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
-#SOCIAL_AUTH_URL_NAMESPACE = 'social'
-#SOCIAL_AUTH_SANITIZE_REDIRECTS = True
-#SOCIAL_AUTH_AZUREAD_B2C_OAUTH2_KEY = '82b69818-6892-43bc-b9ca-8e5589b3cbec'
-#SOCIAL_AUTH_AZUREAD_B2C_OAUTH2_SECRET = os.environ['azure_auth_secret']
-#SOCIAL_AUTH_AZUREAD_B2C_OAUTH2_TENANT_ID = 'ca0de36f-3f37-4d1f-aca1-f7b34698de63'
-#SOCIAL_AUTH_AZUREAD_B2C_OAUTH2_SCOPE = [
-#    'openid', 'email', 'profile',
-#    ]
-#SOCIAL_AUTH_AZUREAD_B2C_OAUTH2_POLICY = 'B2C_1_cis5800Team5UserFlow'
-#IGNORE_DEFAULT_SCOPE = True
-#SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True
-#SOCIAL_AUTH_PROTECTED_USER_FIELDS = ['email']
-#SOCIAL_AUTH_AZUREAD_B2C_OAUTH2_SCHEMA = 'azuread-b2c-oauth2'
-
 SOCIAL_AUTH_AZUREAD_B2C_OAUTH2_ID_KEY = 'userId'
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/subscriptions'
 SOCIAL_AUTH_LOGIN_ERROR_URL = '/loginerror/'
@@ -118,7 +106,6 @@ SOCIAL_AUTH_AZUREAD_B2C_OAUTH2_SCOPE = [
     'openid', 'email', 'profile',
         ]
 SOCIAL_AUTH_AZUREAD_B2C_OAUTH2_SCHEMA = 'azuread-b2c-oauth2'
-
 
 SOCIAL_AUTH_PIPELINE = (
     'subtracker_frontend.pipeline.utils.social_details',
