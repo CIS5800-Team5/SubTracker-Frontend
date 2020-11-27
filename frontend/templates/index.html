@@ -35,8 +35,27 @@
             <li class="nav-item"><a class="nav-link" href="#aboutus">About Us</a></li>
 	       <li class="nav-item"><a class="nav-link" href="#contactus">Contact Us</a></li>
         </ul>
+   {% if request.user.is_authenticated %}
+	   <p>Welcome {{ request.user.first_name }}</p>
+  <ul class="navbar-nav">
+
+      <div class="dropdown dashboard">
+        <a class="nav-link my-auto p-0" role="button" id="Dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons">account_circle</i>
+  </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="Dropdown">
+          <a class="dropdown-item" href="profile"><i class="material-icons float-left mr-2" height="auto">settings</i>Profile</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="subscriptions"><i class="material-icons float-left mr-2" height="auto">settings</i>Subscriptions</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="logout"><i class="material-icons float-left mr-2" height="auto">exit_to_app</i>Logout</a>
+        
+				</div>
+      </div>
+  </ul>
+{% else %}
 	   <a class="btn my-2 signupButton navSignupButton" href="#">Sign Up</a>
-       <a class="btn my-2 signinButton" href="login">Login</a>
+			 <a class="btn my-2 signinButton" href="{% url 'social:begin' 'azuread-b2c-oauth2' %}">Login</a>
+{% endif %}
 	    </div>
 	   </div>
     </nav>

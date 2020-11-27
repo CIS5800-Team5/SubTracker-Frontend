@@ -16,7 +16,7 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-LOGIN_URL='/user-auth/login/'
+LOGIN_URL='/login/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -29,7 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-SITE_ID = 1
+#SITE_ID = 1
 
 # Application definition
 
@@ -43,9 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'frontend',
-    #'oauth2_provider',
-    #'microsoft_auth',
-    'users',
 ]
 
 MIDDLEWARE = [
@@ -71,7 +68,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                #'microsoft_auth.context_processors.microsoft',
                 "social_django.context_processors.backends",
                 "social_django.context_processors.login_redirect",
             ],
@@ -82,9 +78,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'subtracker_frontend.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -93,24 +86,55 @@ DATABASES = {
 }
 
 
-# Password validation
-# https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
-
 AUTHENTICATION_BACKENDS = [
-    #'microsoft_auth.backends.MicrosoftAuthenticationBackend',
-    #'django.contrib.auth.backends.ModelBackend' # if you also want to use Django's authentication
-    # I recommend keeping this with at least one database superuser in case of unable to use others
-    "social_core.backends.azuread_tenant.AzureADTenantOAuth2",
+    "social_core.backends.azuread_b2c.AzureADB2COAuth2",
+    'django.contrib.auth.backends.ModelBackend',
 ]
 
-AUTH_USER_MODEL='users.User'
+#SOCIAL_AUTH_URL_NAMESPACE = 'social'
+#SOCIAL_AUTH_SANITIZE_REDIRECTS = True
+#SOCIAL_AUTH_AZUREAD_B2C_OAUTH2_KEY = '82b69818-6892-43bc-b9ca-8e5589b3cbec'
+#SOCIAL_AUTH_AZUREAD_B2C_OAUTH2_SECRET = os.environ['azure_auth_secret']
+#SOCIAL_AUTH_AZUREAD_B2C_OAUTH2_TENANT_ID = 'ca0de36f-3f37-4d1f-aca1-f7b34698de63'
+#SOCIAL_AUTH_AZUREAD_B2C_OAUTH2_SCOPE = [
+#    'openid', 'email', 'profile',
+#    ]
+#SOCIAL_AUTH_AZUREAD_B2C_OAUTH2_POLICY = 'B2C_1_cis5800Team5UserFlow'
+#IGNORE_DEFAULT_SCOPE = True
+#SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True
+#SOCIAL_AUTH_PROTECTED_USER_FIELDS = ['email']
+#SOCIAL_AUTH_AZUREAD_B2C_OAUTH2_SCHEMA = 'azuread-b2c-oauth2'
 
-SOCIAL_AUTH_AZUREAD_TENANT_OAUTH2_KEY = '82b69818-6892-43bc-b9ca-8e5589b3cbec'
-SOCIAL_AUTH_AZUREAD_TENANT_OAUTH2_SECRET = os.environ['azure_auth_secret']
+SOCIAL_AUTH_AZUREAD_B2C_OAUTH2_ID_KEY = 'userId'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/subscriptions'
+SOCIAL_AUTH_LOGIN_ERROR_URL = '/loginerror/'
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+SOCIAL_AUTH_STRATEGY = 'social_django.strategy.DjangoStrategy'
+SOCIAL_AUTH_AZUREAD_B2C_OAUTH2_TENANT_ID = 'ca0de36f-3f37-4d1f-aca1-f7b34698de63'
+SOCIAL_AUTH_AZUREAD_B2C_OAUTH2_POLICY = 'B2C_1_cis5800Team5UserFlow'
+SOCIAL_AUTH_AZUREAD_B2C_OAUTH2_KEY = '82b69818-6892-43bc-b9ca-8e5589b3cbec'
+SOCIAL_AUTH_AZUREAD_B2C_OAUTH2_SECRET = os.environ['azure_auth_secret']
+SOCIAL_AUTH_AZUREAD_B2C_OAUTH2_SCOPE = [
+    'openid', 'email', 'profile',
+        ]
+SOCIAL_AUTH_AZUREAD_B2C_OAUTH2_SCHEMA = 'azuread-b2c-oauth2'
 
-#MICROSOFT_AUTH_CLIENT_ID = ''
-#MICROSOFT_AUTH_CLIENT_SECRET = ''
-#MICROSOFT_AUTH_LOGIN_TYPE = 'ma'
+
+SOCIAL_AUTH_PIPELINE = (
+    'subtracker_frontend.pipeline.utils.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'subtracker_frontend.pipeline.utils.load_user',
+    'social_core.pipeline.social_auth.social_user',
+    'subtracker_frontend.pipeline.utils.load_username',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+)
+
+#SOCIAL_AUTH_AZUREAD_B2C_OAUTH2_USER_FIELDS = [
+#    'email', 'fullname'
+#    ]
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {

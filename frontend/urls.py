@@ -6,7 +6,8 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('oauth/', include("social_django.urls")),
     path('login/', views.login, name='login'),
-    path('accounts/logout/', views.logout, name='logout'),
-    path('accounts/subscriptions/', views.subscriptions, name='subscriptions'),
-    path('accounts/profile/', views.profile, name='profile'),
+    path('logout/', views.logout, name='logout'),
+    path('subscriptions/', views.subscriptions, name='subscriptions'),
+    path('profile/', views.profile, name='profile'),
+    path('user/', views.user, name='user'),
     ]
