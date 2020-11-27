@@ -71,6 +71,12 @@
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="sidebar-sticky pt-3">
         <ul class="nav flex-column">
+              <li class="nav-item">
+            <a class="nav-link row" href="{% url 'profile' %}">
+              <i class="material-icons float-left mr-2" height="auto">storage</i>
+              Profile <span class="sr-only">(current)</span>
+            </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link row" href="{% url 'subscriptions' %}">
               <i class="material-icons float-left mr-2" height="auto">storage</i>
@@ -190,8 +196,10 @@
       <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
       <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.bootstrap4.min.js"></script>
       <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
-      <script src="{% static '../js/dataTables.editor.min.js' %}"></script>
-      <script src="{% static '../js/editor.bootstrap4.min.js' %}"></script>
+      <!-- script src="{% static '../js/dataTables.editor.min.js' %}"></script> -->
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+      <!-- script src="{% static '../js/editor.bootstrap4.min.js' %}"></script> -->
+      <script src="https://editor.datatables.net/extensions/Editor/js/editor.bootstrap4.min.js"></script>
       
       <script>
 // localstorage
