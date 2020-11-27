@@ -17,14 +17,14 @@ def login(request):
     if request.user.is_authenticated:
         return redirect('subscriptions')
     else:
-        return redirect('http://localhost:8000/oauth/login/azuread-b2c-oauth2/')
+        return redirect('/oauth/login/azuread-b2c-oauth2/')
 def logout(request):
     auth.logout(request)
     #return render(request, 'logout.html')
     return redirect('index')
-@login_required(login_url='http://localhost:8000/oauth/login/azuread-b2c-oauth2/')
+@login_required(login_url='/oauth/login/azuread-b2c-oauth2/')
 def subscriptions(request):
     return render(request, 'subscriptions.html')
-@login_required(login_url='http://localhost:8000/oauth/login/azuread-b2c-oauth2/')
+@login_required(login_url='/oauth/login/azuread-b2c-oauth2/')
 def profile(request):
     return render(request, 'profile.html')
