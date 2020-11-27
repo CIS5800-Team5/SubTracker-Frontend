@@ -1,0 +1,88 @@
+body{
+    background: rgb(0,30,60);	
+    background: linear-gradient(90deg, rgba(0,30,60,1) 0%, rgba(0,51,102,1) 35%, rgba(0,80,161,1) 100%);
+    padding-top: 4.1em;
+}
+main {
+    background-color:white;
+}
+nav a {
+    color: black;
+}
+.navbar {
+	background-color: #F3F3F3;
+	position: fixed;
+}
+.navbar-custom {
+	font-size: 1.1em;
+    font-weight: 500;
+}
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+    color: #003366;
+    font-weight: 500;
+}
+.navbar {
+	background-color: #F3F3F3;
+	position: fixed;
+    box-shadow: 0 2px 2px -2px black;
+}
+
+footer {
+	background-color: #F3F3F3;
+	padding-bottom: 2em;
+	padding-top: 2em;
+}
+footer ul {
+	list-style-type: none;
+	padding: 0;
+}
+footer a {
+	color: black;
+}
+.copyright {
+	float: right;
+    padding-right: 15px;
+}
+.dashboard{
+    margin-top:6px;
+}
+.navbar-brand {
+    margin-right:auto;
+    float:left;
+    }   
+.navbar-expand-lg .navbar-nav .dropdown-menu {
+    position: absolute;
+}
+.dropdown-menu {
+    float: right;
+}
+.btnDel {
+    background-color: red;
+    border-radius: 5px;
+    color: white;
+    font-weight: 500;
+}
+.addSubbtn {
+    background-color: #007ed0;
+    color: white;
+}
+.addSubbtn:hover {
+    background-color: #000;
+    color: white;
+}
+@media (max-width: 768px) {
+    .navbar-brand {
+        justify-content: center;
+        margin:auto;
+    }
+}
+@media (min-width: 0px)
+.navbar-expand-md .navbar-nav .dropdown-menu {
+    position: absolute;
+}
+@media (max-width:992px){
+    nav{
+        text-align: center;
+    }
+}
