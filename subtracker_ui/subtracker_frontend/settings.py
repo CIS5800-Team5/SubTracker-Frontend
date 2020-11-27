@@ -29,7 +29,7 @@ SECRET_KEY = 'ztst0^o1z+svq%0cz(_-5q$f=r#b^s3izn)@(!25^@i=xb7ud8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['subtracker-ui.azurewebsites.net', 'subtracker.ml', 'www.subtracker.ml']
+ALLOWED_HOSTS = ['subtracker-ui.azurewebsites.net', 'subtracker.ml', 'www.subtracker.ml', 'localhost','127.0.0.1']
 
 #SITE_ID = 1
 
@@ -80,10 +80,21 @@ TEMPLATES = [
 WSGI_APPLICATION = 'subtracker_frontend.wsgi.application'
 
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
+#}
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'django_db',
+        'USER': 'django_rwx@subtrackerdb',
+        'PASSWORD': os.environ['django_rwx_secret'],
+        'HOST': 'subtrackerdb.mysql.database.azure.com',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
     }
 }
 
