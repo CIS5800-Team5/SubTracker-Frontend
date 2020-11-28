@@ -129,8 +129,10 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details',
 )
-
-SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
+if 'SOCIAL_AUTH_REDIRECT_IS_HTTPS' in os.environ:
+    SOCIAL_AUTH_REDIRECT_IS_HTTPS = os.environ['SOCIAL_AUTH_REDIRECT_IS_HTTPS']
+else:
+    SOCIAL_AUTH_REDIRECT_IS_HTTPS = False
 
 #SOCIAL_AUTH_AZUREAD_B2C_OAUTH2_USER_FIELDS = [
 #    'email', 'fullname'
