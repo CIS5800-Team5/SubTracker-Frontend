@@ -5,9 +5,9 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('oauth/', include("social_django.urls")),
-    path('login/', views.login, name='login'),
+#    path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
     path('subscriptions/', views.subscriptions, name='subscriptions'),
     path('profile/', views.profile, name='profile'),
-    path('user/', views.user, name='user'),
+#    path('user/', views.user, name='user'),
     ]
