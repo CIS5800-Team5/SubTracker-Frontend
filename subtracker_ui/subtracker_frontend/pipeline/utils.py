@@ -1,4 +1,5 @@
 from django.conf import settings
+import requests
 
 USER_FIELDS = ['username','email','first_name','last_name']
 def load_user(strategy, details, backend, user=None, *args, **kwargs):
@@ -24,6 +25,13 @@ def load_uid(backend, details, response, *args, **kwargs):
 def load_username(strategy, details, backend, user=None, *args, **kwargs):
     print(details['username'])
     return {'username': details['username']}
+
+def create_subtracker_user(response,user, strategy, storage, backend, *args, **kwargs):
+    check_user_url = "https://subtrackerapi.azurewebsites.net/api/customers/search?customer_email=" + response["emails"][0]
+    check_user_response = requests.get(check_user_url)
+    if check_user_response.text == "No data returned":
+        url = "https://subtrackerapi.azurewebsites.net/api/customers/create?customer_email=" + response["emails"][0]
+        response = requests.post(url)
 
 def get_user_prop(details,backend,*args, **kwargs):
     props = dict()

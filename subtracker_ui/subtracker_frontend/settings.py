@@ -125,6 +125,7 @@ SOCIAL_AUTH_PIPELINE = (
     'subtracker_frontend.pipeline.utils.load_user',
     'social_core.pipeline.social_auth.social_user',
     'subtracker_frontend.pipeline.utils.load_username',
+    'subtracker_frontend.pipeline.utils.create_subtracker_user',
     'social_core.pipeline.social_auth.associate_user',
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details',
