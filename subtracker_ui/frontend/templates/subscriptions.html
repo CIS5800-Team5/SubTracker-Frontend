@@ -111,9 +111,9 @@
             <label for="subname" class="col-form-label">Subscription:</label>
             <select class="form-control" id="subname">
 						<option value="Select a Service" disabled selected>Select a Service</option>
-						{% for service in services %}
+						{% for service_id,service_name in services.items %}
                 <optgroup>
-                   <option value="{{ service }}">{{ service }}</option>
+                   <option value="{{ service_id }}">{{ service_name }}</option>
                 </optgroup>
             {% endfor %}
 						</select>
@@ -233,11 +233,20 @@
 //DataTable JS
           
 var tb = $('#subtable').DataTable();
+var csrftoken = getCookie('csrftoken');
 
 $('#addSubbtn').on('click', function() {
   var subname = $("#subname").val();
   var price = $("#price").val();
   var renewdate = $("#renewdate").val();
+
+  var postdata = {
+//	  'subname' = subname
+//		'price' = $("#price").val(),
+//		'renewdata' = $("#renewdate").val(),
+		'csrfmiddlewaretoken': csrftoken
+	};
+//	$.post('', postdata);
   var row = tb.row.add([subname, price, renewdate, "<span><button class='btnEdit'>Edit</button></span>", "<span><button class='btnDel'>Delete</button></span>"]).draw();
     subtable.push(row);
 });    
