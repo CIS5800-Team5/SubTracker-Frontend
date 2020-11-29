@@ -146,17 +146,17 @@
             <div class="status"></div>
         </form>
         </div>
-        <div class="col-md-3 ml-auto mr-auto text-center">
-            <ul class="list-unstyled">
+        <div class="col-md-4 mx-auto mt-2 text-center justify-content-center">
+            <ul class="contact-list">
                 <li><i class="material-icons mt-5">place</i>
-                    <p>New York, NY 10010, USA</p>
+                    <p>55 Lexington Ave, New York, NY 10010</p>
                 </li>
 
                 <li><i class="material-icons mt-5">phone</i>
-                    <p>+ 01 234 567 89</p>
+                    <p><a href="tel:646-312-1000">(646) 312-1000</a></p>
                 </li>
                 <li><i class="material-icons mt-5">email</i>
-                    <p>customerservice@subtracker.com</p>
+                    <p><a href="mailto:contact@subtracker.com">contact@subtracker.com</a><p></p>
                 </li>
             </ul>
         </div>
@@ -164,24 +164,48 @@
     </div>
 </div>
 </main>
-	<footer>
-		<div class="container">
-		<div class="copyright">
-		  &copy; 2020 SubTracker <br>
-		  All Rights Reserved
-		</div>
+<footer>
+    <div class="container">
+		  <div class="copyright">
+		      &copy; 2020 SubTracker <br>
+		      All Rights Reserved
+		  </div>
 	   <ul class="footernav">
-        <li>
-            <a href="#index">Home</a>
-        </li>
-        <li>
-            <a href="#aboutus">About Us</a>
-        </li>
-	    <li>
-            <a href="#contactus">Contact Us</a>
-        </li>
+        <div class ="row">
+            <div class ="col-md-2">
+                <h6>Information</h6>
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="index.html#aboutus">About Us</a>
+                </li>
+	            <li>
+                    <a href="index.html#contactus">Contact Us</a>
+                </li>
+            </div>
+            <div class= "col-md-2">
+                <h6>Account</h6>
+                <li>
+                    <a href="signup.html">Sign Up</a>
+                </li>
+                <li>
+                    <a href="signin.html">Sign In</a>
+                </li>
+	            <li>
+                    <a href="subscriptions.html">Subscriptions</a>
+                </li>
+            </div>
+        </div>
        </ul>
-		</div>
-	</footer>
+    </div>
+</footer>
+<script>$(document).ready(function() {
+    $("#contact-form").submit(function(e) {
+        event.preventDefault()
+        $("#form-field").hide();
+        $("#contact-success").show();
+    });
+});</script>
 </body>
 </html>
