@@ -116,6 +116,11 @@ footer a {
 .footernav a {
     text-decoration: none;
 }
+
+.welcome {
+    padding-bottom: 6px;
+    margin-right: 0.5em;
+}
 @media (max-width: 768px) {
   [class*="col-"] {
       margin-bottom: 5em;
