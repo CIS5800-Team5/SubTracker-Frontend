@@ -221,16 +221,16 @@
             <div class= "col-md-2">
                 <h6>Account</h6>
                 {% if request.user.is_authenticated %}
+                <li>
+                    <a href="{% url 'logout' %}">Log Out</a>
+                </li>
+                <li>
+                    <a href="{% url 'subscriptions' %}">Subscriptions</a>
+                </li>
                 {% else %}
                 <li>
                     <a href="{% url 'social:begin' 'azuread-b2c-oauth2' %}">Sign Up / Login</a>
                 </li>
-                {% endif %}
-                {% if request.user.is_authenticated %}
-	            <li>
-                    <a href="{% url 'subscriptions' %}">Subscriptions</a>
-                </li>
-                {% else %}
                 {% endif %}
             </div>
         </div>
