@@ -220,15 +220,21 @@
             </div>
             <div class= "col-md-2">
                 <h6>Account</h6>
+                {% if request.user.is_authenticated %}
+                {% else %}
                 <li>
                     <a href="signup.html">Sign Up</a>
                 </li>
                 <li>
                     <a href="signin.html">Sign In</a>
                 </li>
+                {% endif %}
+                {% if request.user.is_authenticated %}
 	            <li>
                     <a href="subscriptions.html">Subscriptions</a>
                 </li>
+                {% else %}
+                {% endif %}
             </div>
         </div>
        </ul>
