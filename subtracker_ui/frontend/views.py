@@ -46,5 +46,3 @@ def index(request):
 		['desmond.lee@baruchmail.cuny.edu'],
 		)
 		
-		
-		return render(request, 
