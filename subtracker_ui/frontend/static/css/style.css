@@ -64,8 +64,8 @@ body{
     background: linear-gradient(90deg, rgba(0,30,60,1) 0%, rgba(0,51,102,1) 35%, rgba(0,80,161,1) 100%);
 }
 .jumbotron-custom-about {
-    padding-top: 10em;
-    padding-bottom: 10em;
+    padding-top: 20em;
+    padding-bottom: 20em;
     color: black;
     background: #f5f5f5;
 }
@@ -111,7 +111,6 @@ footer a {
 }
 .contact-list a:hover {
     color: black;
-    font-weight: bold;
 }
 .footernav a {
     text-decoration: none;
@@ -120,6 +119,10 @@ footer a {
   display: block;
   max-width: 100%;
   height: auto;
+}
+.welcome {
+    padding-bottom: 6px;
+    margin-right: 0.5em;
 }
 @media (max-width: 768px) {
   [class*="col-"] {

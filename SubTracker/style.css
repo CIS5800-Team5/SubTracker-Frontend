@@ -95,6 +95,9 @@ footer a {
 .copyright {
 	float: right;
 }
+.footernav a {
+    text-decoration: none;
+}
 /* Footer end */
 .ctaimg {
     width: 100%;
@@ -113,9 +116,7 @@ footer a {
     color: black;
     font-weight: bold;
 }
-.footernav a {
-    text-decoration: none;
-}
+
 .aboutimg {
   display: block;
   max-width: 100%;
