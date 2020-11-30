@@ -73,7 +73,7 @@
         <p class="lead">No more forgetting. Stop paying for unused subscriptions. SubTracker can help you track and manage your subscriptions.</p>
         {% if request.user.is_authenticated %}
         {% else %}
-	    <a class="btn my-2 my-sm-0 signupButton" href="{% url 'social:begin' 'azuread-b2c-oauth2' %}">Start Saving Now</a>
+	    <a class="btn my-2 my-sm-0 ctaButton" href="{% url 'social:begin' 'azuread-b2c-oauth2' %}">Start Saving Now</a>
         {% endif %}
     </div>
     {% load static %}
@@ -175,7 +175,7 @@
         </div>
         </div>         
         <div class="text-center">
-            <button class="btn my-2 my-sm-0 signupButton m-auto" type="submit">Submit</button>
+            <button class="btn my-2 my-sm-0 submitbutton m-auto" type="submit">Submit</button>
         </div>
             <div class="status"></div>
         </form>
