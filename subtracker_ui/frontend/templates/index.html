@@ -72,6 +72,7 @@
         <h1 class="display-4 ">Forgot to cancel a subscription?</h1>
         <p class="lead">No more forgetting. Stop paying for unused subscriptions. SubTracker can help you track and manage your subscriptions.</p>
         {% if request.user.is_authenticated %}
+        <a class="btn my-2 my-sm-0 ctaButton" href="{% url 'subscriptions' %}">My Subscriptions</a>
         {% else %}
 	    <a class="btn my-2 my-sm-0 ctaButton" href="{% url 'social:begin' 'azuread-b2c-oauth2' %}">Start Saving Now</a>
         {% endif %}
@@ -224,6 +225,7 @@
             </div>
             <div class= "col-md-2">
                 <h6>Account</h6>
+                {% if request.user.is_authenticated %}
                 <li>
                     <a href="{% url 'logout' %}">Log Out</a>
                 </li>
@@ -233,9 +235,11 @@
                 <li>
                     <a href="{% url 'subscriptions' %}">Subscriptions</a>
                 </li>
+                {% else %}
                 <li>
                     <a href="{% url 'social:begin' 'azuread-b2c-oauth2' %}">Sign Up / Login</a>
                 </li>
+                {% endif %}
             </div>
         </div>
        </ul>
