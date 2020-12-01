@@ -191,3 +191,4 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'subtrackertest@gmail.com'
 EMAIL_HOST_PASSWORD ='cis5800subtracker'
 EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
