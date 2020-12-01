@@ -113,7 +113,7 @@
 						<option value="Select a Service" disabled selected>Select a Service</option>
 						{% for service_id,service_name in services.items %}
                 <optgroup>
-                   <option value="{{ service_id }}">{{ service_name }}</option>
+                   <option value="{{ service_name }}">{{ service_name }}</option>
                 </optgroup>
             {% endfor %}
 						</select>
@@ -256,6 +256,9 @@ $('#addSubbtn').on('click', function() {
 
   var row = tb.row.add([subname, price, renewdate, "<span><button class='btnEdit'>Edit</button></span>", "<span><button class='btnDel'>Delete</button></span>"]).draw();
     subtable.push(row);
+    $.post("https://subtrackerapi.azurewebsites.net/api/subscriptions/create?customer_email={{request.user}}&service_name=" + subname + "&subscription_cost=" + price + "&subscription_renewal=" + renewdate,  
+    {
+    });
 });    
 // Edit Row Button Function //          
 var myTable = $('#subtable').DataTable();

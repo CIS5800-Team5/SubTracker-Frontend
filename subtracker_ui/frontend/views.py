@@ -6,6 +6,28 @@ from django.shortcuts import redirect
 from django.core.mail import send_mail
 from django.conf import settings
 
+import logging
+# create logger
+logger = logging.getLogger('simple_example')
+logger.setLevel(logging.DEBUG)
+
+# create console handler and set level to debug
+ch = logging.StreamHandler()
+ch.setLevel(logging.DEBUG)
+
+# create formatter
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+# add formatter to ch
+ch.setFormatter(formatter)
+
+# add ch to logger
+logger.addHandler(ch)
+
+
+
+
+
 def index(request):
     return render(request, 'index.html')
 
@@ -41,7 +63,9 @@ def subscriptions(request):
         if subscriptions_response.text == "No data returned":
             pass
         else:
+            logger.debug(subscriptions_response.text)
             subscriptions_data = json.loads(subscriptions_response.text)
+
 
         return render(request,"subscriptions.html", {'services': services_sorted, 'subscriptions_data':subscriptions_data})
 
