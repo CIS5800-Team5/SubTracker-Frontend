@@ -46,5 +46,6 @@ def index(request):
 		message_email,
 		['desmond.lee@baruchmail.cuny.edu'],
 		)
-	return render(request,"index.html")
+	else:
+		return render(request,"index.html")
 		
