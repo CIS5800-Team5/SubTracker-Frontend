@@ -104,31 +104,22 @@
         <div class="modal-body">
         <form class="needs-validation" novalidate>
           <div class="form-group">
-            <label for="subname" class="col-form-label">Subscription:</label>
-            <select class="form-control" id="subname" required>
-            <optgroup>
-                {% for service_id,service_name in services.items %}
-                
-                   <option value="{{ service_name }}">{{ service_name }}</option>
-                {% endfor %}
-            </optgroup>
-            </select>
+            <label for="recipient-name" class="col-form-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name" required>
+            <div class="valid-feedback">
+            Looks good!
+            </div>
           </div>
           <div class="form-group">
-            <label for="price" class="col-form-label">Price:</label>
-            <input type="text" class="form-control" id="price" pattern="^\d+(\.|\,)\d{2}$" required>
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text" required></textarea>
           </div>
-            <div class="form-group">
-            <label for="renewdate" class="col-form-label">Renews:</label>
-            <input type="date" class="form-control" id="renewdate" required>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Send message</button>
           </div>
-        
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" id="addSubbtn" class="btn btn-primary">Add Subscription</button>
+        </form>
       </div>
-    </form>
-    </div>
     </div>
   </div>
 </div>
