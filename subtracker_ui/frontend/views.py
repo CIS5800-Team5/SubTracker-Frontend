@@ -32,3 +32,17 @@ def subscriptions(request):
         services_sorted = dict(sorted(services.items(), key = lambda kv:kv[1]))
         return render(request,"subscriptions.html", {'services': services_sorted})
 
+def index(request):
+	if request.method == "POST":
+		message_name = request.POST['name']
+		message_email = request.POST['email']
+		message_subject = request.POST['subject']
+		message = request.POST['message']
+		
+		send_mail(
+		'Message from' + message_name + ':' + message_subject,
+		message,
+		message_email,
+		['desmond.lee@baruchmail.cuny.edu'],
+		)
+		
