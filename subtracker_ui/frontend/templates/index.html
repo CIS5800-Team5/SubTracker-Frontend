@@ -35,20 +35,22 @@
             <li class="nav-item"><a class="nav-link active" href="#index">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="#aboutus">About Us</a></li>
 	       <li class="nav-item"><a class="nav-link" href="#contactus">Contact Us</a></li>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'subscriptions' %}">Subscriptions</a></li>
+            {% else %}
+            {% endif %}
         </ul>
    {% if request.user.is_authenticated %}
-	   <p>Welcome {{ request.user.first_name }}</p>
+	   <p class="my-auto welcome">Welcome {{ request.user.first_name }}</p>
   <ul class="navbar-nav">
 
       <div class="dropdown dashboard">
         <a class="nav-link my-auto p-0" role="button" id="Dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons">account_circle</i>
   </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="Dropdown">
-          <a class="dropdown-item" href="{% url 'profile' %}"><i class="material-icons float-left mr-2" height="auto">settings</i>Profile</a>
+          <a class="dropdown-item" href="{% url 'profile' %}"><i class="material-icons float-left mr-2" height="auto">settings</i>Settings</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{% url 'subscriptions' %}"><i class="material-icons float-left mr-2" height="auto">settings</i>Subscriptions</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{% url 'logout' %}"><i class="material-icons float-left mr-2" height="auto">exit_to_app</i>Logout</a>
+          <a class="dropdown-item" href="{% url 'logout' %}"><i class="material-icons float-left mr-2" height="auto">exit_to_app</i>Log Out</a>
         
 				</div>
       </div>
@@ -69,7 +71,11 @@
         <div class="col-sm-8 col-md-5 mx-auto align-items-center">
         <h1 class="display-4 ">Forgot to cancel a subscription?</h1>
         <p class="lead">No more forgetting. Stop paying for unused subscriptions. SubTracker can help you track and manage your subscriptions.</p>
-	    <button class="btn my-2 my-sm-0 signupButton" href="{% url 'social:begin' 'azuread-b2c-oauth2' %}">Start Saving Now</button>
+        {% if request.user.is_authenticated %}
+        <a class="btn my-2 my-sm-0 ctaButton" href="{% url 'subscriptions' %}">My Subscriptions</a>
+        {% else %}
+	    <a class="btn my-2 my-sm-0 ctaButton" href="{% url 'social:begin' 'azuread-b2c-oauth2' %}">Start Saving Now</a>
+        {% endif %}
     </div>
     {% load static %}
         <img class="col-md-6 ml-auto my-auto p-0 ctaimg" src={% static 'images/laptop.jpg' %} alt="pc" width="300" height="300">
@@ -77,29 +83,55 @@
 </div>
 </div>
 <!-- About Us -->
-<div id="aboutus" class="jumbotron jumbotron-fluid jumbotron-custom-about">
-<div class="container">
+<div id="aboutus" class="jumbotron jumbotron-custom-about">
+    <div class="container">
     <div class="row">
-    <div class="col-sm-8 col-md-5 text-center mx-auto my-5">
-        <h1 class="display-4">Our Story</h1>
-        <p class="lead">During a meeting, our team realized the amount of subscriptions people have nowadays. One of the problems that consumers face is the amount of subscriptions they have. From this, we decided to create a platform that would help users manage all of their subscriptions. </p>
-    </div>
-    <div class="col-sm-8 col-md-5 text-center mx-auto my-5">
-        <h1 class="display-4">Our Goal</h1>
-        <p class="lead">At SubTracker, we want our users to feel like they are taking control over their subscriptions. We want to make it easy for the user to track and manage their subscriptions. </p>
-    </div>
+        <div class="col-sm-8 col-md-6 text-center m-auto">
+            <h1 class="display-4">Our Story</h1>
+            <p class="lead">During a meeting, our team realized the amount of subscriptions people have nowadays. One of the problems that consumers face is the amount of subscriptions they have. From this, we decided to create a platform that would help users manage all of their subscriptions. </p>
+        </div>
+        <div class="col-sm-8 col-md-6 mx-auto my-auto p-5 aboutimg">
+            <img class="aboutimg" src={% static 'images/story.jpg' %} alt="Meeting at table">
+        </div>
     </div>
     <div class="row">
-    <div class="col-sm-8 col-md-5 text-center mx-auto my-5">
-        <h1 class="display-4">Our Team</h1>
-        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <div class="col-sm-8 col-md-6 mx-auto my-auto p-5 aboutimg">
+            <img class="aboutimg" src={% static 'images/goal.jpg' %} alt="Person using laptop">
+        </div>
+        <div class="col-sm-8 col-md-6 text-center mx-auto my-auto">
+            <h1 class="display-4">Our Goal</h1>
+            <p class="lead">At SubTracker, we want our users to users feel at ease while fully utilizing SubTracker to track and manage their subscriptions. We want to make the experience simple and easy for users to track and manage their subscriptions. </p>
+        </div>
     </div>
-    <div class="col-sm-8 col-md-5 text-center mx-auto my-5">
-        <h1 class="display-4">Our Mission</h1>
-        <p class="lead">Our mission is to help users utilize SubTracker </p>
+    <div class="row">
+        <div class="col-sm-8 col-md-6 text-center mx-auto my-auto">
+            <h1 class="display-4">Our Mission</h1>
+            <p class="lead">Our mission is to help users control and manage their evergrowing list of subscriptions. At the end of the day, people shouldn't pay for subscriptions they don't use. Consumers should be able to enjoy all of their subscriptions while saving as much as they can. </p>
+        </div>
+        <div class="col-sm-8 col-md-6 text-center mx-auto my-auto p-5 ">
+            <img class="aboutimg" src={% static 'images/mission.jpg' %} alt="Person on a MacBook">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 text-center mx-auto my-auto">
+            <h1 class="display-4 my-5">Our Team</h1>
+            <h4>Elsa Cifuentes</h4>
+            <p>Project Manager</p>
+            <div class="col-sm-4 float-left">
+            <h4>Jason Semon</h4>
+            <p>DevOps, Architect, Engineer</p>
+            <h4>Gibson Sanchez</h4>
+            <p>Backend Developer</p>
+            </div>
+            <div class="col-sm-4 float-right">
+            <h4>Desmond Lee</h4>
+            <p>Frontend Designer</p>
+            <h4>Wynne Kwok</h4>
+            <p>Business Analyst</p>
+            </div>
+        </div>
     </div>
     </div>
-</div>
 </div>
 <!-- Contact Us -->
 <div id="contactus" class="jumbotron jumbotron-fluid jumbotron-custom-contact">
@@ -107,19 +139,19 @@
         <h1 class="h1-responsive text-center my-4 display-4">Contact Us</h1>
         <p class="lead text-center w-responsive mx-auto mb-5">Have a question or a suggestion? Our team will gladly assist you with any of your suggestions, questions, or concerns.</p>
         <div class="row">
-        <!--Grid column-->
-        <div class="col-md-6 mb-md-0  mb-5">
-        <form id="contact-form" name="contact-form" action="#" method="">
+        <div id="form-field" class="col-md-6 mb-md-0 mb-5">
+        <form id="contact-form" name="contact-form" method="post">
+            {% csrf_token %}
         <div class="row">
         <div class="col-md-6">
             <div class="md-form mb-0">
-                <input type="text" id="name" name="name" class="form-control" placeholder="John Doe" pattern="[a-zA-Z]+" required>
+                <input type="text" id="name" name="name" class="form-control" placeholder="" pattern="[a-zA-Z]+" required>
                 <label for="name" class="">Name</label>
             </div>
         </div>
         <div class="col-md-6">
             <div class="md-form mb-0">
-                <input type="text" id="email" name="email" class="form-control" placeholder="example@domain.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                <input type="text" id="email" name="email" class="form-control" placeholder="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                 <label for="email" class="">Email</label>
             </div>
         </div>
@@ -135,28 +167,35 @@
         <div class="row">
         <div class="col-md-12">
             <div class="md-form">
-                <textarea type="text" id="message" name="message" rows="10" class="form-control  md-textarea" placeholder="Your message goes here" required></textarea>
+                <textarea type="text" id="message" name="message" rows="10" class="form-control  md-textarea" placeholder="" required></textarea>
                 <label for="message">Message</label>
             </div>
         </div>
         </div>         
         <div class="text-center">
-            <button class="btn my-2 my-sm-0 signupButton m-auto" type="submit">Submit</button>
+            <button class="btn my-2 my-sm-0 submitbutton m-auto" type="submit">Submit</button>
         </div>
-            <div class="status"></div>
         </form>
         </div>
-        <div class="col-md-3 ml-auto mr-auto text-center">
-            <ul class="list-unstyled">
+        <div id="contact-success" class="m-auto" style="display:none">
+            <div class="row text-center m-auto justify-content-center ">
+            <div class="col-md-9">
+                <h1 class="display-4">Thank you.</h1>
+                <p class="lead">Your message has been received. We will get back to you as soon as possible!</p>
+            </div>
+            </div>
+        </div>
+        <div class="col-md-4 mx-auto mt-2 text-center justify-content-center">
+            <ul class="contact-list">
                 <li><i class="material-icons mt-5">place</i>
-                    <p>New York, NY 10010, USA</p>
+                    <p>55 Lexington Ave, New York, NY 10010</p>
                 </li>
 
                 <li><i class="material-icons mt-5">phone</i>
-                    <p>+ 01 234 567 89</p>
+                    <p><a href="tel:646-312-1000">(646) 312-1000</a></p>
                 </li>
                 <li><i class="material-icons mt-5">email</i>
-                    <p>customerservice@subtracker.com</p>
+                    <p><a href="mailto:contact@subtracker.com">contact@subtracker.com</a><p></p>
                 </li>
             </ul>
         </div>
@@ -164,24 +203,54 @@
     </div>
 </div>
 </main>
-	<footer>
-		<div class="container">
-		<div class="copyright">
-		  &copy; 2020 SubTracker <br>
-		  All Rights Reserved
-		</div>
+<footer>
+    <div class="container">
+		  <div class="copyright">
+		      &copy; 2020 SubTracker <br>
+		      All Rights Reserved
+		  </div>
 	   <ul class="footernav">
-        <li>
-            <a href="#index">Home</a>
-        </li>
-        <li>
-            <a href="#aboutus">About Us</a>
-        </li>
-	    <li>
-            <a href="#contactus">Contact Us</a>
-        </li>
+        <div class ="row">
+            <div class ="col-md-2">
+                <h6>Information</h6>
+                <li>
+                    <a href="#index">Home</a>
+                </li>
+                <li>
+                    <a href="#aboutus">About Us</a>
+                </li>
+	            <li>
+                    <a href="#contactus">Contact Us</a>
+                </li>
+            </div>
+            <div class= "col-md-2">
+                <h6>Account</h6>
+                {% if request.user.is_authenticated %}
+                <li>
+                    <a href="{% url 'logout' %}">Log Out</a>
+                </li>
+                <li>
+                    <a href="{% url 'profile' %}">Settings</a>
+                </li>
+                <li>
+                    <a href="{% url 'subscriptions' %}">Subscriptions</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="{% url 'social:begin' 'azuread-b2c-oauth2' %}">Sign Up / Login</a>
+                </li>
+                {% endif %}
+            </div>
+        </div>
        </ul>
-		</div>
-	</footer>
+    </div>
+</footer>
+<script>$(document).ready(function() {
+    $("#contact-form").submit(function(e) {
+        event.preventDefault()
+        $("#form-field").hide();
+        $("#contact-success").show();
+    });
+});</script>
 </body>
 </html>

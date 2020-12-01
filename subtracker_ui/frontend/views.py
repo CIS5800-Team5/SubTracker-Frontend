@@ -3,6 +3,8 @@ from django.contrib import auth
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
+from django.core.mail import send_mail
+from django.conf import settings
 
 def index(request):
     return render(request, 'index.html')
@@ -43,3 +45,19 @@ def subscriptions(request):
 
         return render(request,"subscriptions.html", {'services': services_sorted, 'subscriptions_data':subscriptions_data})
 
+def index(request):
+	if request.method == "POST":
+		message_name = request.POST['name']
+		message_email = request.POST['email']
+		message_subject = request.POST['subject']
+		message = request.POST['message']
+		
+		send_mail(
+		'Message from' + message_name + ':' + message_subject,
+		message,
+		message_email,
+		['subtrackertest@gmail.com'],
+		fail_silently=False)
+	else:
+		return render(request,"index.html")
+		
