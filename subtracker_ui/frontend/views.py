@@ -45,7 +45,7 @@ def index(request):
 		message,
 		message_email,
 		['desmond.lee@baruchmail.cuny.edu'],
-		)
+		fail_silently=False)
 	else:
 		return render(request,"index.html")
 		
