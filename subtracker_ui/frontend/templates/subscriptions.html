@@ -104,13 +104,13 @@
           <div class="form-group">
             <label for="subname" class="col-form-label">Subscription:</label>
             <select class="form-control" id="subname" required>
-						<option value="Select a Service" disabled selected>Select a Service</option>
-            {% for service_id,service_name in services.items %}
-                <optgroup>
+            <optgroup>
+                {% for service_id,service_name in services.items %}
+                
                    <option value="{{ service_name }}">{{ service_name }}</option>
-                </optgroup>
-            {% endfor %}
-						</select>
+                {% endfor %}
+            </optgroup>
+            </select>
           </div>
           <div class="form-group">
             <label for="price" class="col-form-label">Price:</label>
