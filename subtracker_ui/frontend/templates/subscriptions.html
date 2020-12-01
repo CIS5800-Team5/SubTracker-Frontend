@@ -274,7 +274,7 @@ var tb = $('#subtable').DataTable();
 	    subtable.push(row);
 {% endfor %}
 
-$('#addSubbtn').on('click', function() {
+$(document).on('submit',function() {
   var subname = $("#subname").val();
   var price = $("#price").val();
   var renewdate = $("#renewdate").val();
