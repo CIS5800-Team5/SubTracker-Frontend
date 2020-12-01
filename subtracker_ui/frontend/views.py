@@ -24,14 +24,26 @@ def subscriptions(request):
         pass
     else:
         services = {}
-        url = "https://subtrackerapi.azurewebsites.net/api/services/all"
-        response = requests.get(url)
-        data = json.loads(response.text)
+        services_url = "https://subtrackerapi.azurewebsites.net/api/services/all"
+        services_response = requests.get(services_url)
+        services_data = json.loads(services_response.text)
 
-        for i in range(0, len(data)):
-            services[i] = data[i]['service_name']
+        for i in range(0, len(services_data)):
+            services[i] = services_data[i]['service_name']
         services_sorted = dict(sorted(services.items(), key = lambda kv:kv[1]))
-        return render(request,"subscriptions.html", {'services': services_sorted})
+
+        subscriptions_service_name = {}
+        subscriptions_cost = {}
+        subscriptions_renewal = {}
+        subscriptions_id = {}
+        subscriptions_url = "https://subtrackerapi.azurewebsites.net/api/customers/getsubscriptions?customer_email=" + request.user.email
+        subscriptions_response = requests.get(subscriptions_url)
+        if subscriptions_response.text == "No data returned":
+            pass
+        else:
+            subscriptions_data = json.loads(subscriptions_response.text)
+
+        return render(request,"subscriptions.html", {'services': services_sorted, 'subscriptions_data':subscriptions_data})
 
 def index(request):
 	if request.method == "POST":
