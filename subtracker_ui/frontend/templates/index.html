@@ -78,7 +78,7 @@
         {% endif %}
     </div>
     {% load static %}
-        <img class="col-md-6 ml-auto my-auto p-0 ctaimg" src={% static 'images/laptop.jpg' %} alt="pc" width="300" height="300">
+        <img class="col-md-6 ml-auto p-0 p-0 ctaimg" src={% static 'images/laptop.jpg' %} alt="pc" width="300" height="300">
     </div>
 </div>
 </div>
@@ -211,7 +211,7 @@
 		  </div>
 	   <ul class="footernav">
         <div class ="row">
-            <div class ="col-md-2">
+            <div class ="col-md-3 pb-3">
                 <h6>Information</h6>
                 <li>
                     <a href="#index">Home</a>
@@ -223,7 +223,7 @@
                     <a href="#contactus">Contact Us</a>
                 </li>
             </div>
-            <div class= "col-md-2">
+            <div class= "col-md-3">
                 <h6>Account</h6>
                 {% if request.user.is_authenticated %}
                 <li>
@@ -251,6 +251,7 @@
         $("#form-field").hide();
         $("#contact-success").show();
     });
-});</script>
+});
+</script>
 </body>
 </html>
