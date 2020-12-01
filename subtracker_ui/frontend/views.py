@@ -66,8 +66,10 @@ def subscriptions(request):
             logger.debug(subscriptions_response.text)
             subscriptions_data = json.loads(subscriptions_response.text)
 
-
-        return render(request,"subscriptions.html", {'services': services_sorted, 'subscriptions_data':subscriptions_data})
+        if subscriptions_data:
+            return render(request,"subscriptions.html", {'services': services_sorted, 'subscriptions_data':subscriptions_data})
+        else:
+            return render(request,"subscriptions.html", {'services': services_sorted})
 
 def index(request):
 	if request.method == "POST":
