@@ -93,6 +93,11 @@ footer a {
 .copyright {
 	float: right;
 }
+.aboutimg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
 .ctaimg {
     margin:auto 0;
     }
