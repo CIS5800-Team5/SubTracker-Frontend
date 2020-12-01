@@ -61,15 +61,11 @@ def subscriptions(request):
         subscriptions_url = "https://subtrackerapi.azurewebsites.net/api/customers/getsubscriptions?customer_email=" + request.user.email
         subscriptions_response = requests.get(subscriptions_url)
         if subscriptions_response.text == "No data returned":
-            pass
+            return render(request,"subscriptions.html", {'services': services_sorted})
         else:
             logger.debug(subscriptions_response.text)
             subscriptions_data = json.loads(subscriptions_response.text)
-
-        if subscriptions_data:
             return render(request,"subscriptions.html", {'services': services_sorted, 'subscriptions_data':subscriptions_data})
-        else:
-            return render(request,"subscriptions.html", {'services': services_sorted})
 
 def index(request):
 	if request.method == "POST":
