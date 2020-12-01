@@ -44,7 +44,7 @@ def index(request):
 		'Message from' + message_name + ':' + message_subject,
 		message,
 		message_email,
-		['desmond.lee@baruchmail.cuny.edu'],
+		['subtrackertest@gmail.com'],
 		fail_silently=False)
 	else:
 		return render(request,"index.html")
