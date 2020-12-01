@@ -93,6 +93,11 @@ footer a {
 .copyright {
 	float: right;
 }
+.aboutimg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
 .ctaimg {
     margin:auto 0;
     }
@@ -114,8 +119,11 @@ footer a {
         padding-top: 4.2em;
         }
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .ctaimg {
       margin-top: 5em;
+  }
+  .ctainfo{
+    text-align: center;
   }
 }

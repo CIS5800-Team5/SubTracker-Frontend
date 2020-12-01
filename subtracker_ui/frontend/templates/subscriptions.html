@@ -72,12 +72,6 @@
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="sidebar-sticky pt-3">
         <ul class="nav flex-column">
-              <li class="nav-item">
-            <a class="nav-link row" href="{% url 'profile' %}">
-              <i class="material-icons float-left mr-2" height="auto">storage</i>
-              Profile <span class="sr-only">(current)</span>
-            </a>
-          </li>
           <li class="nav-item">
             <a class="nav-link row" href="{% url 'subscriptions' %}">
               <i class="material-icons float-left mr-2" height="auto">storage</i>
@@ -96,7 +90,8 @@
           <button type="button" data-toggle="modal" data-target="#addSubscription" class="btn addSubbtn btn-md ">
             Add Subscription
           </button>
-            <div class="modal fade" id="addSubscription" tabindex="-1" role="dialog" aria-labelledby="addSubscription" aria-hidden="true">
+
+<div class="modal fade" id="addSubscription" tabindex="-1" role="dialog" aria-labelledby="addSubscription" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -106,36 +101,46 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="" method="">
+        <form class="needs-validation" novalidate>
           <div class="form-group">
             <label for="subname" class="col-form-label">Subscription:</label>
-            <select class="form-control" id="subname">
-						<option value="Select a Service" disabled selected>Select a Service</option>
-						{% for service_id,service_name in services.items %}
+            <select class="form-control" id="subname" required>
                 <optgroup>
+                {% for service_id,service_name in services.items %}
+                
                    <option value="{{ service_name }}">{{ service_name }}</option>
+                {% endfor %}
                 </optgroup>
-            {% endfor %}
-						</select>
+            </select>
+            <div class="valid-feedback">
+            Looks good!
+            </div>
           </div>
           <div class="form-group">
             <label for="price" class="col-form-label">Price:</label>
-            <input type="text" class="form-control" id="price">
+            <input type="text" class="form-control" id="price" pattern="^(?=.?\d)\d{0,5}(\.?\d{0,2})?$" placeholder="Ex: 14.99" required>
+              <div class="invalid-feedback">
+                Please enter the correct currency format.
+              </div>
           </div>
-            <div class="form-group">
+          <div class="form-group">
             <label for="renewdate" class="col-form-label">Renews:</label>
-            <input type="date" class="form-control" id="renewdate">
+            <input type="date" class="form-control" id="renewdate" required>
+              <div class="invalid-feedback">
+                Please enter a date.
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Add Subscription</button>
           </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" id="addSubbtn" class="btn btn-primary">Add Subscription</button>
       </div>
     </div>
   </div>
 </div>
-        </div>
+
+</div>
           
         
       </div>
@@ -212,7 +217,27 @@
       <!-- script src="{% static '../js/editor.bootstrap4.min.js' %}"></script> -->
       <script src="https://editor.datatables.net/extensions/Editor/js/editor.bootstrap4.min.js"></script>
       
-      <script>
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
+<script>
 
 $.ajaxSetup({
   data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
@@ -249,7 +274,7 @@ var tb = $('#subtable').DataTable();
 	    subtable.push(row);
 {% endfor %}
 
-$('#addSubbtn').on('click', function() {
+$(document).on('submit',function() {
   var subname = $("#subname").val();
   var price = $("#price").val();
   var renewdate = $("#renewdate").val();

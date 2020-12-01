@@ -70,17 +70,17 @@
 <div id="index" class="jumbotron jumbotron-custom-home">
 <div class="container ">
     <div class="row">
-        <div class="col-sm-8 col-md-5 mx-auto align-items-center">
+        <div class="col-sm-8 col-md-5 mx-auto ctainfo">
         <h1 class="display-4 ">Forgot to cancel a subscription?</h1>
         <p class="lead">No more forgetting. Stop paying for unused subscriptions. SubTracker can help you track and manage your subscriptions.</p>
         {% if request.user.is_authenticated %}
-        <a class="btn my-2 my-sm-0 ctaButton" href="{% url 'subscriptions' %}">My Subscriptions</a>
+        <a class="btn my-4 my-sm-0 ctaButton" href="{% url 'subscriptions' %}">My Subscriptions</a>
         {% else %}
-	    <a class="btn my-2 my-sm-0 ctaButton" href="{% url 'social:begin' 'azuread-b2c-oauth2' %}">Start Saving Now</a>
+	    <a class="btn my-4 my-sm-0 ctaButton" href="{% url 'social:begin' 'azuread-b2c-oauth2' %}">Start Saving Now</a>
         {% endif %}
     </div>
     {% load static %}
-        <img class="col-md-6 ml-auto p-0 p-0 ctaimg" src={% static 'images/laptop.jpg' %} alt="pc" width="300" height="300">
+        <img class="col-md-6 ml-auto p-0 ctaimg" src={% static 'images/laptop.jpg' %} alt="pc" width="300" height="300">
     </div>
 </div>
 </div>

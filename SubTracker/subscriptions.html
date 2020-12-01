@@ -235,5 +235,12 @@ var table = $('#subtable').DataTable();
         .remove()
         .draw();
 		  });
+$('#subtable').DataTable( {
+    buttons: [
+        { extend: 'create' },
+        { extend: 'edit' },
+        { extend: 'remove' }
+    ]
+} );
       </script>
 </body></html>
