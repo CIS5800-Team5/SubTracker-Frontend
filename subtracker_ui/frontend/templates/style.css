@@ -119,7 +119,7 @@ footer a {
         padding-top: 4.2em;
         }
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .ctaimg {
       margin-top: 5em;
   }
