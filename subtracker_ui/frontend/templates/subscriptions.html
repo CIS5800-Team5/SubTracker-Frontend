@@ -141,7 +141,7 @@
 </div>
 
 </div>
-<!-- Delete Modal -->
+<!-- Delete Modal 
 <div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="delModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -160,7 +160,7 @@
       </div>
     </div>
   </div>
-</div>       
+</div>  -->     
         
       </div>
         <!-- Table -->
@@ -261,26 +261,6 @@
 $.ajaxSetup({
   data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
 	});
-
-// localstorage
-      
-    let subtable = [];
-          const addSub = (ev) =>{
-              ev.preventDefault();
-            let sub = {
-                subname: $("#subname").val(),
-                price: $("#price").val(),
-                renewdate: $("#renewdate").val()
-            }
-            subtable.push(sub);
-            document.forms[0].reset();
-            console.warn('added' , {subtable} ); 
-            let pre = document.querySelector('#msg pre');
-          localStorage.setItem('subscriptions', JSON.stringify(subtable) );
-          }
-            document.addEventListener('DOMContentLoaded', ()=>{
-            document.getElementById('addSubbtn').addEventListener('click', addSub);
-        });
 
 //DataTable JS
           
