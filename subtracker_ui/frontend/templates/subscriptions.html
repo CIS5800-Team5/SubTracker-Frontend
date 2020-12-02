@@ -311,7 +311,7 @@ $('#subtable').on( 'click', '.btnEdit', function () {
     myTable.row( this ).edit();
 } );
 // Delete Row Button Function //
- function delModal() {
+/* function delModal() {
      var table = $('#subtable').DataTable();
         table
         $(document).on('click', '.btnDel', function () {
@@ -328,6 +328,13 @@ var table = $('#subtable').DataTable();
     });
 
      delRow();
-}
+} */
+ $('#subtable').on('click', '.btnDel', function () {
+var table = $('#subtable').DataTable();
+    table
+        .row($(this).parents('tr'))
+        .remove()
+        .draw();
+		  });
       </script>
 </body></html>
