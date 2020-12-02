@@ -291,7 +291,7 @@ $('#subtable').on( 'click', '.btnEdit', function () {
     myTable.row( this ).edit();
 } );
 // Delete Row Button Function //
- $(document).on('click', '.delRowbtn', function () {
+ $('#subtable').on('click', '.delRowbtn', function () {
     if(confirm("Are you sure, you want to remove this subscription?"))
 {
         var table = $('#subtable').DataTable();
