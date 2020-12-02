@@ -71,6 +71,10 @@ footer a {
     background-color: #000;
     color: white;
 }
+.welcome {
+    padding-bottom: 6px;
+    margin-right: 0.5em;
+}
 @media (max-width: 768px) {
     .navbar-brand {
         justify-content: center;
