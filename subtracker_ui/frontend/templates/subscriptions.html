@@ -142,7 +142,7 @@
 
 </div>
 <!-- Delete Modal -->
-<!--<div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="delModalLabel" aria-hidden="true">
+<div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="delModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -160,13 +160,7 @@
       </div>
     </div>
   </div>
-</div>   -->   
-          <div id="dlgConfirm" title="Delete the selected toon?">
-    <p>
-    <span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>
-    Toon will be deleted and cannot be recovered. Are you sure?
-    </p>
-</div>
+</div>       
         
       </div>
         <!-- Table -->
@@ -295,7 +289,7 @@ var tb = $('#subtable').DataTable();
     var subname = "{{ x.service_name }}"
 	  var price = "{{ x.subscription_cost }}"
 	  var renewdate = "{{ x.subscription_renewal }}"
-	    var row = tb.row.add([subname, price, renewdate, "<span><button class='btnEdit' disabled>Edit</button></span>", "<span><button class='btn-danger .btnDel' data-toggle='modal' data-target='#delModal'>Delete</button></span>"]).draw();
+	    var row = tb.row.add([subname, price, renewdate, "<span><button class='btnEdit' disabled>Edit</button></span>", "<span><button class='btn-danger' data-toggle='modal' data-target='#delModal'>Delete</button></span>"]).draw();
 	    subtable.push(row);
 {% endfor %}
 
@@ -317,35 +311,14 @@ $('#subtable').on( 'click', '.btnEdit', function () {
     myTable.row( this ).edit();
 } );
 // Delete Row Button Function //
-/* $(document).on('click', '.btnDel', function () {
+$(document).on('click', '.btn-danger', function () {
 var table = $('#subtable').DataTable();
     table
         .row($(this).parents('tr'))
-        .remove()
-        .draw();
-		  }); */
- $(document).ready(function(){
-    $("#dlgConfirm").hide();
-});
-
-$(function() {
-    $(".deleteRow").click(function(){
-        var $row = $(this).parent('td').parent('tr');
-        $( "#dlgConfirm" ).dialog({
-            resizable: false,
-            height:140,
-            modal: true,
-            buttons: {
-                "Delete selected toon": function() {
-                    $row.remove();
-                    $( this ).dialog( "close" );
-                },
-                Cancel: function() {
-                    $( this ).dialog( "close" );
-                }
-            }
-        });     
-});
-});
+        $(document).on('click', '.btnDel', function () {
+            .remove()
+            .draw();
+        });
+})
       </script>
 </body></html>
