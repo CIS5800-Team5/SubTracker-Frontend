@@ -261,6 +261,22 @@
 $.ajaxSetup({
   data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
 	});
+// localstorage
+      
+    let subtable = [];
+          const addSub = (ev) =>{
+              ev.preventDefault();
+            let sub = {
+                subname: $("#subname").val(),
+                price: $("#price").val(),
+                renewdate: $("#renewdate").val()
+            }
+            subtable.push(sub);
+            document.forms[0].reset();
+            console.warn('added' , {subtable} ); 
+            let pre = document.querySelector('#msg pre');
+          localStorage.setItem('subscriptions', JSON.stringify(subtable) );
+          };
 
 //DataTable JS
 var tb = $('#subtable').DataTable();   
