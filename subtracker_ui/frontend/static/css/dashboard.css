@@ -57,11 +57,11 @@ footer a {
 .dropdown-menu {
     float: right;
 }
-.btnDel {
-    background-color: red;
-    border-radius: 5px;
-    color: white;
-    font-weight: 500;
+.btn-danger{
+    border-radius: 0.2em;
+}
+.btn-secondary{
+    border-radius: 0.2em;
 }
 .addSubbtn {
     background-color: #007ed0;
