@@ -263,27 +263,30 @@ $.ajaxSetup({
 	});
 
 //DataTable JS
-          
-var tb = $('#subtable').DataTable();
-{% for x in subscriptions_data %}
-    var subname = "{{ x.service_name }}"
-	  var price = "{{ x.subscription_cost }}"
-	  var renewdate = "{{ x.subscription_renewal }}"
-	    var row = tb.row.add([subname, price, renewdate, "<span><button class='btnEdit' disabled>Edit</button></span>", "<span><button class='delRowbtn btn-danger' data-toggle='modal' data-target='#delModal'>Delete</button></span>"]).draw();
-	    subtable.push(row);
-{% endfor %}
-
+var tb = $('#subtable').DataTable();   
+    
 $(document).on('submit',function() {
   var subname = $("#subname").val();
   var price = $("#price").val();
   var renewdate = $("#renewdate").val();
 
-  var row = tb.row.add([subname, price, renewdate, "<span><button class='btnEdit'>Edit</button></span>", "<span><button class='delRowbtn btn-danger' data-toggle='modal' data-target='#delModal'>Delete</button></span>"]).draw();
+  var row = tb.row.add([subname, price, renewdate, "<span><button class='btnEdit'>Edit</button></span>", "<span><button class='delRowbtn btn-danger'>Delete</button></span>"]).draw();
     subtable.push(row);
     $.post("https://subtrackerapi.azurewebsites.net/api/subscriptions/create?customer_email={{request.user}}&service_name=" + subname + "&subscription_cost=" + price + "&subscription_renewal=" + renewdate,  
     {
     });
-});    
+});  
+          
+
+{% for x in subscriptions_data %}
+    var subname = "{{ x.service_name }}"
+	  var price = "{{ x.subscription_cost }}"
+	  var renewdate = "{{ x.subscription_renewal }}"
+	    var row = tb.row.add([subname, price, renewdate, "<span><button class='btnEdit' disabled>Edit</button></span>", "<span><button class='delRowbtn btn-danger'>Delete</button></span>"]).draw();
+	    subtable.push(row);
+{% endfor %}
+
+  
 // Edit Row Button Function //          
 var myTable = $('#subtable').DataTable();
 
@@ -291,12 +294,15 @@ $('#subtable').on( 'click', '.btnEdit', function () {
     myTable.row( this ).edit();
 } );
 // Delete Row Button Function //
-$('#subtable').on('click', '.btn-danger', function () {
-var table = $('#subtable').DataTable();
-    table
+ $('#subtable').on('click', '.btn-danger', function () {
+    if(confirm("Are you sure, you want to remove this subscription?"))
+{
+        var table = $('#subtable').DataTable();
+        table
         .row($(this).parents('tr'))
         .remove()
         .draw();
+}
 		  });
       </script>
 </body></html>
