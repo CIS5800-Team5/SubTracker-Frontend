@@ -314,7 +314,7 @@ $('#subtable').on( 'click', '.btnEdit', function () {
 $(document).on('click', '.btn-danger', function () {
 var table = $('#subtable').DataTable();
     table
-        .row($(this).parents('tr'))
+        .row($(this).parents('tr'));
         $(document).on('click', '.btnDel', function () {
             .remove()
             .draw();
