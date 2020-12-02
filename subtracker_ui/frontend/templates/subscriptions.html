@@ -289,7 +289,7 @@ var tb = $('#subtable').DataTable();
     var subname = "{{ x.service_name }}"
 	  var price = "{{ x.subscription_cost }}"
 	  var renewdate = "{{ x.subscription_renewal }}"
-	    var row = tb.row.add([subname, price, renewdate, "<span><button class='btnEdit' disabled>Edit</button></span>", "<span><button class='btn-danger'>Delete</button></span>"]).draw();
+	    var row = tb.row.add([subname, price, renewdate, "<span><button class='btnEdit' disabled>Edit</button></span>", "<span><button class='btn-danger' data-toggle='modal' data-target='#delModal'>Delete</button></span>"]).draw();
 	    subtable.push(row);
 {% endfor %}
 
