@@ -289,7 +289,7 @@ var tb = $('#subtable').DataTable();
     var subname = "{{ x.service_name }}"
 	  var price = "{{ x.subscription_cost }}"
 	  var renewdate = "{{ x.subscription_renewal }}"
-	    var row = tb.row.add([subname, price, renewdate, "<span><button class='btnEdit' disabled>Edit</button></span>", "<span><button class='btn-danger' data-toggle='modal' data-target='#delModal'>Delete</button></span>"]).draw();
+	    var row = tb.row.add([subname, price, renewdate, "<span><button class='btnEdit' disabled>Edit</button></span>", "<span><button class='delRowbtn btn-danger' data-toggle='modal' data-target='#delModal'>Delete</button></span>"]).draw();
 	    subtable.push(row);
 {% endfor %}
 
@@ -298,7 +298,7 @@ $(document).on('submit',function() {
   var price = $("#price").val();
   var renewdate = $("#renewdate").val();
 
-  var row = tb.row.add([subname, price, renewdate, "<span><button class='btnEdit'>Edit</button></span>", "<span><button class='btn-danger' data-toggle='modal' data-target='#delModal'>Delete</button></span>"]).draw();
+  var row = tb.row.add([subname, price, renewdate, "<span><button class='btnEdit'>Edit</button></span>", "<span><button class='delRowbtn btn-danger' data-toggle='modal' data-target='#delModal'>Delete</button></span>"]).draw();
     subtable.push(row);
     $.post("https://subtrackerapi.azurewebsites.net/api/subscriptions/create?customer_email={{request.user}}&service_name=" + subname + "&subscription_cost=" + price + "&subscription_renewal=" + renewdate,  
     {
@@ -306,19 +306,28 @@ $(document).on('submit',function() {
 });    
 // Edit Row Button Function //          
 var myTable = $('#subtable').DataTable();
- 
+
 $('#subtable').on( 'click', '.btnEdit', function () {
     myTable.row( this ).edit();
 } );
 // Delete Row Button Function //
-$(document).on('click', '.btn-danger', function () {
+ function delModal() {
+     var table = $('#subtable').DataTable();
+        table
+        $(document).on('click', '.btnDel', function () {
+        .remove()
+        .draw();
+        });
+ }
+ 
+ function delRow() {
+$(document).on('click', '.delRowbtn', function () {
 var table = $('#subtable').DataTable();
     table
-        .row($(this).parents('tr'));
-        $(document).on('click', '.btnDel', function () {
-            .remove()
-            .draw();
-        });
-})
+    .row($(this).parents('tr'))
+    });
+
+     delRow();
+}
       </script>
 </body></html>
