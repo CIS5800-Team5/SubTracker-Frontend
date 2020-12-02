@@ -311,11 +311,11 @@ $('#subtable').on( 'click', '.btnEdit', function () {
     myTable.row( this ).edit();
 } );
 // Delete Row Button Function //
- $('#subtable').on('click', '.btnDel', function () {
+ $(document).on('click', '.delRowbtn', function () {
     if(confirm("Are you sure, you want to remove this subscription?"))
 {
-var table = $('#subtable').DataTable();
-    table
+        var table = $('#subtable').DataTable();
+        table
         .row($(this).parents('tr'))
         .remove()
         .draw();
