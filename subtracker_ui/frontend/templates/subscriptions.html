@@ -99,10 +99,10 @@
         </button>
       </div>
       <div class="modal-body">
-        <form class="needs-validation" novalidate>
+         <form class="needs-validation" novalidate>
           <div class="form-group">
             <label for="subname" class="col-form-label">Subscription:</label>
-            <select class="form-control" id="subname">
+            <select required class="form-control custom-select" name="subname" id="subname" required>
                     <option value="" disabled selected>Select a Subscription</option>
                 {% for service_id,service_name in services.items %}
                 
