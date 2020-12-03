@@ -105,7 +105,7 @@
           <div class="form-group">
             <label for="subname" class="col-form-label">Subscription:</label>
             <select class="form-control" id="subname" required>
-                <optgroup>
+                <optgroup label ="Select a Subscription">
                 {% for service_id,service_name in services.items %}
                 
                    <option value="{{ service_name }}">{{ service_name }}</option>
