@@ -103,13 +103,11 @@
           <div class="form-group">
             <label for="subname" class="col-form-label">Subscription:</label>
             <select class="form-control" id="subname">
-                <optgroup>
-                    <option value="selectSub" disabled selected>Select a Subscription</option>
+                    <option value="" disabled selected>Select a Subscription</option>
                 {% for service_id,service_name in services.items %}
                 
                    <option value="{{ service_name }}">{{ service_name }}</option>
                 {% endfor %}
-                </optgroup>
             </select>
             <div class="valid-feedback">
             Looks good!
