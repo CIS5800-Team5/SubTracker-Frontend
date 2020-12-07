@@ -6,8 +6,11 @@ body{
 main {
     background-color:white;
 }
-nav a {
+.nav-item .active {
     color: black;
+}
+nav a {
+    color:#666666;
 }
 .navbar {
 	background-color: #F3F3F3;
@@ -17,9 +20,8 @@ nav a {
 	font-size: 1.1em;
     font-weight: 500;
 }
-.navbar-custom .nav-item.active .nav-link,
-.navbar-custom .nav-item:hover .nav-link {
-    color: #003366;
+.nav-link:hover {
+    color:#003366 ;
     font-weight: 500;
 }
 .navbar {
@@ -63,16 +65,13 @@ footer a {
 .btn-secondary{
     border-radius: 0.2em;
 }
-.addSubbtn {
+.addSubbtn, .saveBtn {
     background-color: #007ed0;
     color: white;
 }
-.addSubbtn:hover {
+.addSubbtn:hover, .saveBtn:hover {
     background-color: #000;
     color: white;
-}
-.welcome {
-    margin-right: 0.5em;
 }
 @media (max-width: 768px) {
     .navbar-brand {
