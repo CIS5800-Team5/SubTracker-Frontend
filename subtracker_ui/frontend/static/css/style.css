@@ -124,6 +124,17 @@ footer a {
     padding-bottom: 6px;
     margin-right: 0.5em;
 }
+.contact-list {
+    list-style: none;
+    padding: 0;
+}
+.contact-list a {
+    text-decoration: none;
+    color: white;
+}
+.contact-list a:hover {
+    font-weight: bold;
+}
 @media (max-width: 768px) {
   [class*="col-"] {
       margin-bottom: 5em;
