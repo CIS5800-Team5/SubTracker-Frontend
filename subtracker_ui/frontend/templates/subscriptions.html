@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="en"><head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style id="stndz-style"></style>
+    
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Subscription management service">
-    <meta name="keywords" content="subscription, track subscription, manage subscription, subtracker, track sub, manage subscription">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
     <title>Subscriptions | SubTracker</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">
@@ -80,7 +81,7 @@
 <button type="button" data-toggle="modal" data-target="#addSubscription" class="btn addSubbtn btn-md ">
     Add Subscription
 </button>
-<!-- Add subscription Modal -->
+
 <div class="modal fade" id="addSubscription" tabindex="-1" role="dialog" aria-labelledby="addSubscription" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -128,54 +129,7 @@
     </div>
   </div>
 </div>
-<!-- Edit Subscription Modal -->
-<div class="modal fade" id="editSubscription" tabindex="-1" role="dialog" aria-labelledby="editSubscription" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="editSubscription">Add Subscription</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-         <form class="needs-validation" novalidate>
-          <div class="form-group">
-            <label for="subname" class="col-form-label">Subscription:</label>
-            <select required class="form-control custom-select" name="subname" id="subname" required>
-                    <option value="" disabled selected>Select a Subscription</option>
-                {% for service_id,service_name in services.items %}
-                
-                   <option value="{{ service_name }}">{{ service_name }}</option>
-                {% endfor %}
-            </select>
-            <div class="valid-feedback">
-            Looks good!
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="price" class="col-form-label">Price:</label>
-            <input type="text" class="form-control" id="price" pattern="^(?=.?\d)\d{0,5}(\.?\d{0,2})?$" placeholder="Ex: 14.99" required>
-              <div class="invalid-feedback">
-                Please enter the correct currency format.
-              </div>
-          </div>
-          <div class="form-group">
-            <label for="renewdate" class="col-form-label">Renews:</label>
-            <input type="date" class="form-control" id="renewdate" required>
-              <div class="invalid-feedback">
-                Please enter a date.
-              </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+
 </div>
 <!-- Delete Modal 
 <div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="delModalLabel" aria-hidden="true">
@@ -320,7 +274,7 @@ $(document).on('submit',function() {
   var price = $("#price").val();
   var renewdate = $("#renewdate").val();
 
-  var row = tb.row.add([subname, price, renewdate, "<span><button type='button' class='btn btn-secondary btnEdit' data-toggle='modal' data-target='#editSubscription'>Edit</button></span>", "<span><button class='btn delRowbtn btn-danger'>Delete</button></span>"]).draw();
+  var row = tb.row.add([subname, price, renewdate, "<span><button class='btn btn-secondary btnEdit'>Edit</button></span>", "<span><button class='btn delRowbtn btn-danger'>Delete</button></span>"]).draw();
     subtable.push(row);
     $.post("https://subtrackerapi.azurewebsites.net/api/subscriptions/create?customer_email={{request.user}}&service_name=" + subname + "&subscription_cost=" + price + "&subscription_renewal=" + renewdate,  
     {
@@ -332,7 +286,7 @@ $(document).on('submit',function() {
     var subname = "{{ x.service_name }}"
 	  var price = "{{ x.subscription_cost }}"
 	  var renewdate = "{{ x.subscription_renewal }}"
-	    var row = tb.row.add([subname, price, renewdate, "<span><button type='button' class='btn btn-secondary btnEdit' data-toggle='modal' data-target='#editSubscription'>Edit</button></span>", "<span><button class='btn delRowbtn btn-danger'>Delete</button></span>"]).draw();
+	    var row = tb.row.add([subname, price, renewdate, "<span><button class='btn btn-secondary btnEdit' disabled>Edit</button></span>", "<span><button class='btn delRowbtn btn-danger'>Delete</button></span>"]).draw();
 	    subtable.push(row);
 {% endfor %}
 
