@@ -283,9 +283,10 @@ $(document).on('submit',function() {
 
 {% for x in subscriptions_data %}
     var subname = "{{ x.service_name }}"
+		var subUrl = "{{ x.service_url }}"
 	  var price = "{{ x.subscription_cost }}"
 	  var renewdate = "{{ x.subscription_renewal }}"
-	    var row = tb.row.add([subname, price, renewdate, "<span><button class='btn btn-secondary btnEdit' disabled>Edit</button></span>", "<span><button class='btn delRowbtn btn-danger'>Delete</button></span>"]).draw();
+	  var row = tb.row.add(['<a href="' + subUrl + '">' + subname, price, renewdate, "<span><button class='btn btn-secondary btnEdit' disabled>Edit</button></span>", "<span><button class='btn delRowbtn btn-danger'>Delete</button></span>"]).draw();
 	    subtable.push(row);
 {% endfor %}
 
