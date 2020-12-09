@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style id="stndz-style"></style>
-    
+<html lang="en"><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v4.1.1">
+    <meta name="description" content="Subscription management service">
+    <meta name="keywords" content="subscription, track subscription, manage subscription, subtracker, track sub, manage subscription">
+    <meta name="author" content="SubTracker Team">
     <title>Subscriptions | SubTracker</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">
     <link rel="icon" href='images/subtracker.ico'>
 
     <!-- Bootstrap core CSS -->
@@ -30,7 +29,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
         <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static '../images/SubTracker.svg' %}" height="40" alt="SubTracker logo" id="logo"></a>
-				<p class="my-auto welcome">Welcome {{ request.user.first_name }}</p>
+				<p class="my-auto pr-2 welcome">Welcome {{ request.user.first_name }}</p>
   <ul class="navbar-nav">
 
       <div class="dropdown dashboard">
