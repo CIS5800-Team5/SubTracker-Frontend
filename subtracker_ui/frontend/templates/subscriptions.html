@@ -275,9 +275,7 @@ $(document).on('submit',function() {
 
   var row = tb.row.add([subname, price, renewdate, "<span><button class='btn btn-secondary btnEdit'>Edit</button></span>", "<span><button class='btn delRowbtn btn-danger'>Delete</button></span>"]).draw();
     subtable.push(row);
-    $.post("https://subtrackerapi.azurewebsites.net/api/subscriptions/create?customer_email={{request.user}}&service_name=" + subname + "&subscription_cost=" + price + "&subscription_renewal=" + renewdate,  
-    {
-    });
+    $.post("https://subtrackerapi.azurewebsites.net/api/subscriptions/create?customer_email={{request.user}}&service_name=" + subname + "&subscription_cost=" + price + "&subscription_renewal=" + renewdate);
 });  
           
 
@@ -286,7 +284,12 @@ $(document).on('submit',function() {
 		var subUrl = "{{ x.service_url }}"
 	  var price = "{{ x.subscription_cost }}"
 	  var renewdate = "{{ x.subscription_renewal }}"
-	  var row = tb.row.add(['<a href="' + subUrl + '">' + subname, price, renewdate, "<span><button class='btn btn-secondary btnEdit' disabled>Edit</button></span>", "<span><button class='btn delRowbtn btn-danger'>Delete</button></span>"]).draw();
+		var subid = "{{ x.subscription_id }}"
+	  var row = tb.row
+		          .add(['<a href="' + subUrl + '">' + subname, price, renewdate, "<span><button class='btn btn-secondary btnEdit' disabled>Edit</button></span>", "<span><button class='btn delRowbtn btn-danger'>Delete</button></span>"])
+							.draw()
+							.node()
+							.id = subid;
 	    subtable.push(row);
 {% endfor %}
 
@@ -302,10 +305,12 @@ $('#subtable').on( 'click', '.btnEdit', function () {
     if(confirm("Are you sure, you want to remove this subscription?"))
 {
         var table = $('#subtable').DataTable();
+				var subId = $(this).closest('tr').attr('id');
         table
         .row($(this).parents('tr'))
         .remove()
         .draw();
+        $.post("https://subtrackerapi.azurewebsites.net/api/subscriptions/delete?customer_email={{request.user}}&subscription_id=" + subId)
 }
 		  });
       </script>
