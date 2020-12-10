@@ -286,7 +286,7 @@ $(document).on('submit',function() {
 	  var renewdate = "{{ x.subscription_renewal }}"
 		var subid = "{{ x.subscription_id }}"
 	  var row = tb.row
-		          .add(['<a href="' + subUrl + '">' + subname, price, renewdate, "<span><button class='btn btn-secondary btnEdit' disabled>Edit</button></span>", "<span><button class='btn delRowbtn btn-danger'>Delete</button></span>"])
+		          .add(['<a href="' + subUrl + '">' + subname,"$" +  price, renewdate, "<span><button class='btn btn-secondary btnEdit' disabled>Edit</button></span>", "<span><button class='btn delRowbtn btn-danger'>Delete</button></span>"])
 							.draw()
 							.node()
 							.id = subid;

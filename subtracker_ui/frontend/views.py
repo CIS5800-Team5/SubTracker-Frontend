@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.core.mail import send_mail
 from django.conf import settings
+import os
 
 import logging
 # create logger
@@ -24,9 +25,7 @@ ch.setFormatter(formatter)
 # add ch to logger
 logger.addHandler(ch)
 
-
-
-
+api_subscription_key = os.environ['api_subscription_key']
 
 def index(request):
     return render(request, 'index.html')
@@ -45,9 +44,10 @@ def subscriptions(request):
     if request.method == "POST":
         pass
     else:
+        headers = {"Ocp-Apim-Subscription-Key": api_subscription_key}
         services = {}
-        services_url = "https://subtrackerapi.azurewebsites.net/api/services/all"
-        services_response = requests.get(services_url)
+        services_url = "https://api.subtracker.ml/api/services/all"
+        services_response = requests.get(services_url, headers=headers)
         services_data = json.loads(services_response.text)
 
         for i in range(0, len(services_data)):
@@ -58,12 +58,12 @@ def subscriptions(request):
         subscriptions_cost = {}
         subscriptions_renewal = {}
         subscriptions_id = {}
-        subscriptions_url = "https://subtrackerapi.azurewebsites.net/api/customers/getsubscriptions?customer_email=" + request.user.email
-        subscriptions_response = requests.get(subscriptions_url)
+        subscriptions_url = "https://api.subtracker.ml/api/customers/getsubscriptions?customer_email=" + request.user.email
+        subscriptions_response = requests.get(subscriptions_url, headers=headers)
         if subscriptions_response.text == "No data returned":
             return render(request,"subscriptions.html", {'services': services_sorted})
         else:
-            logger.debug(subscriptions_response.text)
+            #logger.debug(subscriptions_response.text)
             subscriptions_data = json.loads(subscriptions_response.text)
             return render(request,"subscriptions.html", {'services': services_sorted, 'subscriptions_data':subscriptions_data})
 
